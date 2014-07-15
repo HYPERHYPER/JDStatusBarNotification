@@ -11,11 +11,23 @@
 @interface JDStatusBarView ()
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) UIButton *button;
 @end
 
 @implementation JDStatusBarView
 
 #pragma mark dynamic getter
+
+- (UIButton *)button;
+{
+    
+    if (!_button) {
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button.backgroundColor = [UIColor clearColor];
+        [self addSubview:_button];
+    }
+    
+}
 
 - (UILabel *)textLabel;
 {
@@ -67,6 +79,8 @@
         indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height)/2.0);
         _activityIndicatorView.frame = indicatorFrame;
     }
+    
+    [self.button setFrame:self.bounds];
 }
 
 - (CGSize)currentTextSize;

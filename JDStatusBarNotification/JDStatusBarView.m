@@ -11,22 +11,23 @@
 @interface JDStatusBarView ()
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
-@property (nonatomic, strong) UIButton *button;
 @end
 
 @implementation JDStatusBarView
+
+@synthesize button;
 
 #pragma mark dynamic getter
 
 - (UIButton *)button;
 {
-    
-    if (!_button) {
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.backgroundColor = [UIColor clearColor];
-        [self addSubview:_button];
+    if (!button) {
+        button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor clearColor];
+        [self addSubview:button];
     }
     
+    return button;
 }
 
 - (UILabel *)textLabel;

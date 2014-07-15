@@ -11,6 +11,6 @@
 @interface JDStatusBarView : UIView
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
-@property (nonatomic, strong, readwrite) UIButton *button;
+@property (nonatomic, retain) UIButton *button;
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
 @end

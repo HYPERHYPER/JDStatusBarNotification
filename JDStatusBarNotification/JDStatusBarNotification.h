@@ -98,7 +98,7 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *
  *  @return The presented notification view for further customization
  */
-+ (UIView*)showWithStatus:(NSString *)status
++ (JDStatusBarView*)showWithStatus:(NSString *)status
              dismissAfter:(NSTimeInterval)timeInterval
                 styleName:(NSString*)styleName
                    target:(id)target

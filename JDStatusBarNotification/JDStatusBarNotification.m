@@ -30,6 +30,7 @@
 @property (nonatomic, weak) JDStatusBarStyle *activeStyle;
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
+
 @end
 
 @implementation JDStatusBarNotification
@@ -77,6 +78,22 @@
 {
     UIView *view = [[self sharedInstance] showWithStatus:status
                                                styleName:styleName];
+    [self dismissAfter:timeInterval];
+    return view;
+}
+
++ (UIView*)showWithStatus:(NSString *)status
+             dismissAfter:(NSTimeInterval)timeInterval
+                styleName:(NSString*)styleName
+                   target:(id)target
+                   action:(SEL)action;
+{
+
+    UIView *view = [[self sharedInstance] showWithStatus:status
+                                               styleName:styleName];
+    
+    [((JDStatusBarView*)view).button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
     [self dismissAfter:timeInterval];
     return view;
 }

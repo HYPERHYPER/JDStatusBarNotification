@@ -16,6 +16,7 @@
 @implementation JDStatusBarView
 
 @synthesize button;
+@synthesize actionBlock;
 
 #pragma mark dynamic getter
 
@@ -24,6 +25,7 @@
     if (!button) {
         button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.backgroundColor = [UIColor clearColor];
+        [button addTarget:self action:@selector(summonActionBlock:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
     }
     
@@ -105,6 +107,12 @@
     }
     
     return textSize;
+}
+
+- (void)summonActionBlock:(UIButton*)button {
+    if (actionBlock) {
+        actionBlock();
+    }
 }
 
 @end

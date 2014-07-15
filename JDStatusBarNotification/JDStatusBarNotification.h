@@ -93,16 +93,13 @@ typedef JDStatusBarStyle*(^JDPrepareStyleBlock)(JDStatusBarStyle *style);
  *  @param styleName    The name of the style. You can use any JDStatusBarStyle constant
  *  (JDStatusBarStyleDefault, etc.), or a custom style identifier, after you added a
  *  custom style. If this is nil, the default style will be used.
- *  @param target       the target that will be assigned to the button
- *  @param action       the selector assigned to the button
  *
  *  @return The presented notification view for further customization
  */
 + (JDStatusBarView*)showWithStatus:(NSString *)status
-             dismissAfter:(NSTimeInterval)timeInterval
-                styleName:(NSString*)styleName
-                   target:(id)target
-                   action:(SEL)action;
+                      dismissAfter:(NSTimeInterval)timeInterval
+                         styleName:(NSString*)styleName
+                       actionBlock:(void (^)())block;
 
 #pragma mark Dismissal
 

@@ -83,16 +83,14 @@
 }
 
 + (UIView*)showWithStatus:(NSString *)status
-             dismissAfter:(NSTimeInterval)timeInterval
-                styleName:(NSString*)styleName
-                   target:(id)target
-                   action:(SEL)action;
-{
-
+                      dismissAfter:(NSTimeInterval)timeInterval
+                         styleName:(NSString*)styleName
+                       actionBlock:(void (^)())block {
+    
     UIView *view = [[self sharedInstance] showWithStatus:status
                                                styleName:styleName];
     
-    [((JDStatusBarView*)view).button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    ((JDStatusBarView*)view).actionBlock = block;
     
     [self dismissAfter:timeInterval];
     return view;

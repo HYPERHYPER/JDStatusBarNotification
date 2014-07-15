@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface JDStatusBarView : UIView
+
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, retain) UIButton *button;
 @property (nonatomic, assign) CGFloat textVerticalPositionAdjustment;
+@property (readwrite, copy) void (^actionBlock)(void);
+
 @end

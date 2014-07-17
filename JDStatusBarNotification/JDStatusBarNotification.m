@@ -31,6 +31,8 @@
 @property (nonatomic, strong) JDStatusBarStyle *defaultStyle;
 @property (nonatomic, strong) NSMutableDictionary *userStyles;
 
+@property (readwrite, copy) void (^actionBlock)(void);
+
 @end
 
 @implementation JDStatusBarNotification
@@ -38,6 +40,7 @@
 @synthesize overlayWindow = _overlayWindow;
 @synthesize progressView = _progressView;
 @synthesize topBar = _topBar;
+@synthesize actionBlock;
 
 #pragma mark Class methods
 
@@ -87,10 +90,10 @@
                          styleName:(NSString*)styleName
                        actionBlock:(void (^)())block {
     
+    [JDStatusBarNotification sharedInstance].actionBlock = block;
+    
     UIView *view = [[self sharedInstance] showWithStatus:status
                                                styleName:styleName];
-    
-    ((JDStatusBarView*)view).actionBlock = block;
     
     [self dismissAfter:timeInterval];
     return view;
@@ -452,8 +455,20 @@
         } else {
             self.topBar.alpha = 0.0;
         }
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(summonActionBlock)];
+        [tap setNumberOfTapsRequired:1];
+        [self.topBar addGestureRecognizer:tap];
+        
     }
     return _topBar;
+}
+
+- (void)summonActionBlock{
+    if (actionBlock) {
+        actionBlock();
+        actionBlock = nil;
+    }
 }
 
 - (UIView *)progressView;

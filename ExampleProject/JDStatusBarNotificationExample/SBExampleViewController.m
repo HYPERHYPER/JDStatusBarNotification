@@ -182,7 +182,9 @@ static NSString *const SBStyle2 = @"SBStyle2";
         
         [JDStatusBarNotification showWithStatus:status
                                    dismissAfter:2.0
-                                      styleName:style];
+                                      styleName:style actionBlock:^{
+                                          NSLog(@"HEY");
+                                      }];
     } else if (section == 2) {
         self.indicatorStyle = (row==0) ? UIActivityIndicatorViewStyleWhite : UIActivityIndicatorViewStyleGray;
         

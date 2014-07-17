@@ -427,7 +427,7 @@
         _overlayWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _overlayWindow.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _overlayWindow.backgroundColor = [UIColor clearColor];
-        _overlayWindow.userInteractionEnabled = NO;
+        _overlayWindow.userInteractionEnabled = YES;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
         _overlayWindow.rootViewController = [[JDStatusBarNotificationViewController alloc] init];
         _overlayWindow.rootViewController.view.backgroundColor = [UIColor clearColor];

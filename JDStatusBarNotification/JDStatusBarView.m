@@ -20,17 +20,17 @@
 
 #pragma mark dynamic getter
 
-- (UIButton *)button;
-{
-    if (!button) {
-        button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor clearColor];
-        [button addTarget:self action:@selector(summonActionBlock:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
-    }
-    
-    return button;
-}
+//- (UIButton *)button;
+//{
+//    if (!button) {
+//        button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor clearColor];
+//        [button addTarget:self action:@selector(summonActionBlock:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:button];
+//    }
+//    
+//    return button;
+//}
 
 - (UILabel *)textLabel;
 {
@@ -41,6 +41,11 @@
         _textLabel.textAlignment = NSTextAlignmentCenter;
 		_textLabel.adjustsFontSizeToFitWidth = YES;
         _textLabel.clipsToBounds = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(summonActionBlock:)];
+        [_textLabel addGestureRecognizer:tap];
+        [self setUserInteractionEnabled:YES];
+        [_textLabel setUserInteractionEnabled:YES];
+        
         [self addSubview:_textLabel];
     }
     return _textLabel;
@@ -82,8 +87,6 @@
         indicatorFrame.origin.y = ceil(1+(self.bounds.size.height - indicatorFrame.size.height)/2.0);
         _activityIndicatorView.frame = indicatorFrame;
     }
-    
-    [self.button setFrame:self.bounds];
 }
 
 - (CGSize)currentTextSize;
@@ -110,9 +113,15 @@
 }
 
 - (void)summonActionBlock:(UIButton*)button {
+    
     if (actionBlock) {
         actionBlock();
     }
+}
+
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    return self;
 }
 
 @end

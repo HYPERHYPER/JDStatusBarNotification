@@ -55,6 +55,7 @@
 
 + (UIView*)showWithStatus:(NSString *)status;
 {
+    [JDStatusBarNotification sharedInstance].actionBlock = nil;
     return [[self sharedInstance] showWithStatus:status
                                        styleName:nil];
 }
@@ -62,6 +63,7 @@
 + (UIView*)showWithStatus:(NSString *)status
                 styleName:(NSString*)styleName;
 {
+    [JDStatusBarNotification sharedInstance].actionBlock = nil;
     return [[self sharedInstance] showWithStatus:status
                                        styleName:styleName];
 }
@@ -69,6 +71,7 @@
 + (UIView*)showWithStatus:(NSString *)status
              dismissAfter:(NSTimeInterval)timeInterval;
 {
+    [JDStatusBarNotification sharedInstance].actionBlock = nil;
     UIView *view = [[self sharedInstance] showWithStatus:status
                                                styleName:nil];
     [self dismissAfter:timeInterval];
@@ -79,6 +82,9 @@
              dismissAfter:(NSTimeInterval)timeInterval
                 styleName:(NSString*)styleName;
 {
+    
+    [JDStatusBarNotification sharedInstance].actionBlock = nil;
+    
     UIView *view = [[self sharedInstance] showWithStatus:status
                                                styleName:styleName];
     [self dismissAfter:timeInterval];

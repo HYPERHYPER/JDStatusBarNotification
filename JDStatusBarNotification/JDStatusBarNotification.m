@@ -493,7 +493,8 @@
     if (window == nil && [[[UIApplication sharedApplication] windows] count] > 0) window = [[UIApplication sharedApplication] windows][0];
     
     _overlayWindow.transform = window.transform;
-    _overlayWindow.frame = window.frame;
+    _overlayWindow.frame = CGRectMake(0, 0, 320, 20);
+    
 }
 
 - (void)updateTopBarFrameWithStatusBarFrame:(CGRect)rect;

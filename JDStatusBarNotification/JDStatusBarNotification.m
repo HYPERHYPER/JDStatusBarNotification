@@ -496,8 +496,9 @@
 
 - (void)updateWindowTransform;
 {
-    UIWindow *window = [[UIApplication sharedApplication]
-                        mainApplicationWindowIgnoringWindow:self.overlayWindow];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (window == nil && [[[UIApplication sharedApplication] windows] count] > 0) window = [[UIApplication sharedApplication] windows][0];
+	
     _overlayWindow.transform = window.transform;
     _overlayWindow.frame = CGRectMake(0, 0, 320, 20);
     
